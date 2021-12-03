@@ -1,4 +1,3 @@
-/* keep video on top right when scrolling */
 function videoAnchor() {
 	var miniplayer = document.getElementsByClassName("miniplayer")[0];
 	if (miniplayer.parentElement.active) {
@@ -38,7 +37,6 @@ function videoAnchor() {
 		video.style.left = (playerRect.width - videoRect.width) / 2 + "px";
 	}
 }
-/* keep scroll position on timestamp click */
 function scrollAnchor() {
 	var x = window.scrollX;
 	var y = window.scrollY;
