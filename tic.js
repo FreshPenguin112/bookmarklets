@@ -1,10 +1,9 @@
-// Randomize the first marker.
 var turn=Math.random()<1/2 ? 0 : 1;
 
-// Set unit size.
+
 var unit=100/11;
 
-// Create menu.
+
 var menu=document.createElement('div');
 menu.style.position='fixed';
 menu.style.top='50%';
@@ -16,7 +15,7 @@ menu.style.zIndex=9999;
 menu.innerHTML='<a style=\'background:white;position:absolute;left:100%;cursor:pointer\' onClick=\'menu.remove()\'>exit</a>';
 document.body.appendChild(menu);
 
-// Create board.
+
 var board=document.createElement('div');
 board.style.background='rgba(255,255,255,0.9)';
 board.style.position='absolute';
@@ -27,11 +26,10 @@ board.style.width=9*unit+'vmin';
 board.mark=null;
 menu.appendChild(board);
 
-// Create macro and micro maps.
+
 BOXES=[];
 boxes=[[],[],[],[],[],[],[],[],[]];
 
-// Fill the board.
 for(var i=0;i<3;i++){
 	for(var j=0;j<3;j++){
 		var BOX=document.createElement('div');				
@@ -76,15 +74,7 @@ for(var i=0;i<3;i++){
 	}
 }
 
-/*
-+---+---+---+
-| 0 | 1 | 2 |
-+---+---+---+
-| 3 | 4 | 5 |
-+---+---+---+
-| 6 | 7 | 8 |
-+---+---+---+
-*/
+
 
 // Check for victories.
 function check(m){
@@ -115,7 +105,7 @@ function check(m){
 	}
 }
 
-// Place a tied marker.
+
 function draw(obj){
 	// Disable the tied box.
 	obj.mark=2;
@@ -123,7 +113,7 @@ function draw(obj){
 	obj.style.pointerEvents='none';
 }
 
-// Place a marker.
+
 function marker(obj){
 	// Place an O.
 	if(turn==0){
@@ -162,41 +152,39 @@ function marker(obj){
 		x2.style.transform='rotate(-45deg)';
 		obj.appendChild(x2);
 	}
-	// Mark the map and disable the marked box.
+	
 	obj.mark=turn;
 	disable(obj);
 	obj.style.pointerEvents='none';
 }
 
-// Do stuff to a box upon click.
 function pick(b){
-	// Mark box.
+	
 	marker(b);
 	
-	// Check victories.
+	
 	check(boxes[b.macro]);
 	check(BOXES);
 	
-	// Pass turn to other player.
+	
 	turn>0 ? turn=0 : turn=1;
 	
-	// Enable next macro box if it isn't won.
+	
 	if(BOXES[b.micro].mark==null){
-		// Disable all boxes.
+		
 		for(i=0;i<9;i++){
 			for(var j=0;j<9;j++){
 				disable(boxes[i][j]);
 			}
 		}
-		// Enable next macro box.
+		
 		for(i=0;i<9;i++){
-			// Forces won macro boxes to stay disabled.
+		
 			if(board.mark==null){
 				enable(boxes[b.micro][i]);
 			}
 		}
 	}
-	// Enable all macro boxes if it's won.
 	else{
 		for(i=0;i<9;i++){
 			for(var j=0;j<9;j++){
@@ -207,11 +195,9 @@ function pick(b){
 			}
 		}
 	}
-	// Forces won micro boxes to stay disabled.
 	disable(b);
 }
 
-// Disables a box.
 function disable(b){
 	b.style.background='rgba(0,0,0,0.25)';
 	b.setAttribute('onMouseOver','');
@@ -219,7 +205,6 @@ function disable(b){
 	b.setAttribute('onClick','');
 }
 
-// Enables a box.
 function enable(b){
 	// Forces won boxes to stay disabled.
 	if(b.mark==null){
