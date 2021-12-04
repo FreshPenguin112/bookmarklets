@@ -1,4 +1,4 @@
-var style = document.createElement("style");
+javascript:var style = document.createElement("style");
 document.body.appendChild(style);
 
 var canvas = document.createElement("canvas");
