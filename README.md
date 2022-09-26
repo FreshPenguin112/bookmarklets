@@ -6,3 +6,4 @@
 
 * # remember stay chill, school is hard.
 
+[bookmarklet playground](https://about-blank-redirect-yvscej4fjjud4j4f.vercel.app/)
